@@ -1,0 +1,39 @@
+﻿version: '3.8'
+
+services:
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: CandidateManagement
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  candidatemanagement_web:
+    image: candidatemanagement.web
+    build:
+      context: .
+      dockerfile: src/CandidateManagement.Web/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=CandidateManagement;Username=postgres;Password=admin
+      ASPNETCORE_URLS: http://+:80
+    depends_on:
+      - db
+    networks:
+      - app-network
+    ports:
+        - "8000:80"
+        - "8001:443"
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge
