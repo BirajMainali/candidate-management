@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <RootNamespace>CandidateManagement.Web</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
+      <PackageReference Include="Npgsql" Version="9.0.2" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.1" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1" />
+      <PackageReference Include="Scalar.AspNetCore" Version="1.2.76" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CandidateManagement.Application\CandidateManagement.Application.csproj" />
+      <ProjectReference Include="..\CandidateManagement.Contracts\CandidateManagement.Contracts.csproj" />
+      <ProjectReference Include="..\CandidateManagement.Infrastructure\CandidateManagement.Infrastructure.csproj" />
+      <ProjectReference Include="..\CandidateManagement.Presentation\CandidateManagement.Presentation.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+</Project>
