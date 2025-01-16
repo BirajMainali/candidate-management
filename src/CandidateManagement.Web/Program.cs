@@ -15,7 +15,6 @@ builder.Services.AddDbContext<CandidateManagementDbContext>(options =>
         b => b.MigrationsAssembly("CandidateManagement.Infrastructure"));
 });
 
-builder.Services.AddScoped<CandidateManagementDbContext>();
 builder.Services.AddScoped<DbContext, CandidateManagementDbContext>();
 
 var app = builder.Build();

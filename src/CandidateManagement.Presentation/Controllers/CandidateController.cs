@@ -1,5 +1,4 @@
 ﻿using CandidateManagement.Application.Dtos;
-using CandidateManagement.Application.Services;
 using CandidateManagement.Application.Services.Interfaces;
 using CandidateManagement.Contracts.Contracts;
 using Microsoft.AspNetCore.Mvc;

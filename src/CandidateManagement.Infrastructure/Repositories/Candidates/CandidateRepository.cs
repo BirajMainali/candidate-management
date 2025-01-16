@@ -4,8 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CandidateManagement.Infrastructure.Repositories.Candidates;
 
-public class CandidateRepository(CandidateManagementDbContext dbContext)
-    : GenericRepository<Candidate>(dbContext), ICandidateRepository
+public class CandidateRepository : GenericRepository<Candidate>, ICandidateRepository
 {
-    public Task<Candidate?> FindByEmailAsync(string email) => dbContext.Candidates.FirstOrDefaultAsync(x => x.Email == email);
+    private readonly DbContext _dbContext;
+
+    public CandidateRepository(DbContext dbContext) : base(dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
+    public Task<Candidate?> FindByEmailAsync(string email) =>
+        _dbContext.Set<Candidate>().FirstOrDefaultAsync(x => x.Email == email);
 }
